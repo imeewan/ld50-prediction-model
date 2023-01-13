@@ -14,9 +14,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 
-#data=pd.read_csv('C:\\Users\\Ittipat\\OneDrive - UC San Diego\\dnetw2v\\data\\SLC6A_active_excape_export2.csv')
-data=pd.read_csv('C:\\Users\\Ittipat\\OneDrive - UC San Diego\\dnetw2v\\data\\LC_Pre_plated_Bioactive_Compound_Library_8000cmpds_384w.csv')
-#data=pd.read_csv('/home/ittipat/ligands/LC_Pre_plated_Bioactive_Compound_Library_8000cmpds_384w.csv')
+data=pd.read_csv('LC_Pre_plated_Bioactive_Compound_Library_8000cmpds_384w.csv')
 plt.hist(data['molLD50'], density=True, bins=30) # density=False would make counts
 plt.ylabel('LD50')
 plt.xlabel('Data')
@@ -182,19 +180,6 @@ for e in range(epochs):
     validation_loss = torch.mean(( y_validation - model(X_validation) )**2).item()
         
     print("Epoch: %3i Training loss: %0.2F Validation loss: %0.2F"%(e,(running_loss/len(train_loader)), validation_loss))
-
-
-#save model and optimizer
-torch.save(model.state_dict(), "C:\\Users\\Ittipat\\OneDrive - UC San Diego\\dnetw2v\\model\\model_size256_epoch1500.pt")
-torch.save(optimizer.state_dict(), "C:\\Users\\Ittipat\\OneDrive - UC San Diego\\dnetw2v\\model\\optimizer_size256_epoch1500.pt")
-
-# Load the model
-
-model = torch.load("C:\\Users\\Ittipat\\OneDrive - UC San Diego\\dnetw2v\\model\\model_size256_epoch1500.pt")
-
-# Load the optimizer
-
-optimizer = torch.load("C:\\Users\\Ittipat\\OneDrive - UC San Diego\\dnetw2v\\model\\optimizer_size256_epoch1500.pt")
 
 #plot loss
 plt.plot(train_losses, label="Training loss")
