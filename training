@@ -67,7 +67,7 @@ y_train = scaler.fit_transform(y_train)
 y_test = scaler.transform(y_test)
 y_validation = scaler.transform(y_validation)
 
-# We'll remove low variance features
+# remove low variance features
 from sklearn.feature_selection import VarianceThreshold
 feature_select = VarianceThreshold(threshold=0.05)
 X_train = feature_select.fit_transform(X_train)
@@ -75,10 +75,10 @@ X_validation = feature_select.transform(X_validation)
 X_test = feature_select.transform(X_test)
 X_train.shape
 
-# Let's get those arrays transfered to the GPU memory as tensors
+# get those arrays transfered to the GPU memory as tensors
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
-# If you don't have a GPU, buy a graphics card. I have for a long time used a 1060 GTX, which is not that expensive anymore.
+# GPU
 X_train = torch.tensor(X_train, device=device).float()
 X_test = torch.tensor(X_test, device=device).float()
 X_validation = torch.tensor(X_validation, device=device).float()
